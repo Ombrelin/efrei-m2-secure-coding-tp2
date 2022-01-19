@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VulnerableWebApplication", "src\VulnerableWebApplication\VulnerableWebApplication.csproj", "{7B5F2954-D1D8-476A-97C6-1A443D1A134A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AttackerWebSite", "src\AttackerWebSite\AttackerWebSite.csproj", "{A89679F0-4955-4393-80CE-AB52FE20BF74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7B5F2954-D1D8-476A-97C6-1A443D1A134A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B5F2954-D1D8-476A-97C6-1A443D1A134A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B5F2954-D1D8-476A-97C6-1A443D1A134A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B5F2954-D1D8-476A-97C6-1A443D1A134A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A89679F0-4955-4393-80CE-AB52FE20BF74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A89679F0-4955-4393-80CE-AB52FE20BF74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A89679F0-4955-4393-80CE-AB52FE20BF74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A89679F0-4955-4393-80CE-AB52FE20BF74}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
