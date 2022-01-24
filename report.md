@@ -80,3 +80,5 @@ Some thing to know to use secure CSRF tokens :
 - The CSRF token must be tied to the user's session
 
 In the case of the vulnerable application that I developed, the best way to secure it would be the use the server-side session implementation which is provided by the framework. This implementation is secure, it uses various mechanisms including, but not limited to, CSRF tokens, to prevent CSRF attacks.
+
+The code of both site are available at : https://github.com/Ombrelin/efrei-m2-secure-coding-tp2
