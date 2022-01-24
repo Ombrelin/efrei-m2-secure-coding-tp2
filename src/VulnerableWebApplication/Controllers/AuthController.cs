@@ -24,14 +24,14 @@ public class AuthController : Controller
     [HttpPost]
     public async Task<IActionResult> Login(LoginDto dto)
     {
-        ApplicationUser user = await this.context
+        ApplicationUser? user = await this.context
             .ApplicationUsers
             .FirstOrDefaultAsync(u => u.Username == dto.Username);
 
         if (user is not null && user.Password == dto.Password)
         {
-            HttpContext.Session.SetString("loggedUserId", user.Id.ToString());
-            HttpContext.Session.SetString("loggedUserName", user.Username);
+            Response.Cookies.Append("loggedUserId", user.Id.ToString());
+            Response.Cookies.Append("loggedUserName",  user.Username);
             return new RedirectResult("home");
         }
 

@@ -18,8 +18,8 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult HomeView()
     {
-        string loggedUserId = HttpContext.Session.GetString("loggedUserId");
-        string loggedUserName = HttpContext.Session.GetString("loggedUserName");
+        string? loggedUserId = Request.Cookies["loggedUserId"];
+        string? loggedUserName = Request.Cookies["loggedUserName"];
 
         if (loggedUserId is null || loggedUserName is null)
         {
@@ -33,23 +33,27 @@ public class HomeController : Controller
     [HttpPost("password")]
     public async Task<IActionResult> ChangePassword(ChangePasswordDto dto)
     {
-        string loggedUserId = HttpContext.Session.GetString("loggedUserId");
-
-        if (loggedUserId is null)
+        string? loggedUserId = Request.Cookies["loggedUserId"];
+        string? loggedUserName = Request.Cookies["loggedUserName"];
+        
+        if (loggedUserId is null || loggedUserName is null)
         {
-            return Unauthorized();
+            return Unauthorized("Not logged in !");
         }
         
-        ApplicationUser user = await this.context
+        ApplicationUser? user = await this.context
             .ApplicationUsers
             .FindAsync(Guid.Parse(loggedUserId));
 
+        if (user is null)
+        {
+            return Unauthorized("Not logged in !");
+        }
+        
         user.Password = dto.NewPassword;
 
         this.context.ApplicationUsers.Update(user);
         await this.context.SaveChangesAsync();
-        
-        string loggedUserName = HttpContext.Session.GetString("loggedUserName");
 
         ViewBag.Username = loggedUserName;
         return View("Home");

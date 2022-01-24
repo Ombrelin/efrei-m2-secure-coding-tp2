@@ -3,13 +3,19 @@ using Npgsql;
 using VulnerableWebApplication.Database;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession(options =>
-{
-    options.IdleTimeout = TimeSpan.FromSeconds(120);
-    options.Cookie.HttpOnly = true;
-    options.Cookie.IsEssential = true;
-});
+// builder.Services.AddDistributedMemoryCache();
+// builder.Services.AddSession(options =>
+// {
+//     options.IdleTimeout = TimeSpan.FromSeconds(120);
+//     options.Cookie.HttpOnly = true;
+//     options.Cookie.IsEssential = true;
+//     options.Cookie.SameSite = SameSiteMode.None;
+// });
+// builder.Services.AddAntiforgery(options =>
+// {
+//     options.SuppressXFrameOptionsHeader = true;
+// });
+
 
 // Database
 builder.Services.AddDbContext<ApplicationDbContext>(options => {
@@ -55,8 +61,15 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseCors(x => x
+    .AllowAnyMethod()
+    .AllowAnyHeader()
+    .SetIsOriginAllowed(origin => true) // allow any origin
+    .AllowCredentials());
+
+
 app.UseAuthorization();
-app.UseSession();
+//app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
